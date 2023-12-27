@@ -1,6 +1,6 @@
 import { StackScreenProps } from "@react-navigation/stack";
 import { useEffect } from "react";
-import { Image, ImageBackground, StyleSheet, Text, View } from "react-native"
+import { Animated, Image, ImageBackground, StyleSheet, Text, View } from "react-native"
 import { theme } from "../../../../assets/res/theme";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
@@ -11,6 +11,10 @@ import { ResponseData } from "../../../../data/response/ResponseData";
 import { Agents } from "../../../../data/response/Agents";
 import LinearGradient from "react-native-linear-gradient";
 import { gradientAgentColor, gradientColor } from "../../../../core/utils/ext/ColorExt";
+import AgentDetailHeaderComponent from "./component/AgentDetailHeaderComponent";
+import AgentDetailInformationComponent from "./component/AgentDetailInformationComponent";
+import AgentAbilitiesComponent from "./component/AgentAbilitiesComponent";
+import { ScrollView } from "react-native-gesture-handler";
 
 type AgentDetailProps = NativeStackScreenProps<stackScreen, 'AgentDetail'>
 
@@ -43,32 +47,34 @@ const AgentDetailScreen: React.FC<AgentDetailProps> = ({ navigation, route }: Ag
 
   }, [title, navigation])
 
+  //Scroll
+  const scrollY = new Animated.Value(0);
+
+  const handleScroll = Animated.event(
+    [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+    { useNativeDriver: false } // Set to true if using native driver is possible
+  );
+
+  const headerHeight = scrollY.interpolate({
+    inputRange: [0, 200],
+    outputRange: [200, 100],
+    extrapolate: 'clamp',
+  });
+
+
+
   return (
 
     <View style={style.wrapper}>
       {(agents.data != null) && (
-        <View>
-          <LinearGradient
-            // colors={formattedColors}
-            // colors={['rgba(0,0,0,0.8)', 'rgba(0,0,0,0.4)', `#${agents.data.backgroundGradientColors[0].substring(0,6)}99`]}
-            colors={gradientAgentColor(agents.data.backgroundGradientColors[0].substring(0, 6))}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 0 }}
-            style={style.header}
-          >
-            <View style={style.headerBackroundWrapper}>
-              <ImageBackground style={style.headerBackround} source={{ uri: agents.data.background }} 
-              tintColor={'rgba(255 255 255 / 0.1)'} imageStyle={style.headerImgBackground}>
-                <View style={style.headerWrapper}>
-                  <View style={style.headerAgentWrapper}>
-                    <Text style={style.headerAgentTitle}>{agents.data?.displayName}</Text>
-                    <Text style={style.headerAgentRole}>{agents.data?.role?.displayName}</Text>
-                  </View>
-                  <Image style={style.imgThumbnail} source={{ uri: agents.data?.fullPortrait ? agents.data?.fullPortrait : agents.data?.displayIcon }} />
-                </View>
-              </ImageBackground>
+        <View style={style.wrapper}>
+          <AgentDetailHeaderComponent agent={agents.data} navigation={navigation} />
+          <ScrollView onScroll={handleScroll}>
+            <View style={{ flex: 1 }}>
+              <AgentDetailInformationComponent agent={agents.data} navigation={navigation} />
+              <AgentAbilitiesComponent abilities={agents.data?.abilities} />
             </View>
-          </LinearGradient>
+          </ScrollView>
         </View>
       )}
     </View>
@@ -97,17 +103,17 @@ const style = StyleSheet.create({
   },
   headerImgBackground: {
     overflow: 'hidden',
-    transform: [{rotate: '-35deg'}, {scale : 2}],
-    resizeMode : 'cover',
+    transform: [{ rotate: '-35deg' }, { scale: 2 }],
+    resizeMode: 'cover',
     flex: 1,
   },
   headerWrapper: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
     flex: 1,
   },
   headerAgentWrapper: {
-    flex: 1,
-    alignItems: 'center',
+    paddingHorizontal: 20,
     alignContent: 'center',
     justifyContent: 'center'
   },
@@ -120,9 +126,12 @@ const style = StyleSheet.create({
   },
   headerAgentRole: {
     fontSize: 14,
-    backgroundColor: theme.colors.overlayLight,
+    backgroundColor: theme.colors.overlay,
     color: theme.colors.onBackground,
-    borderRadius: 4,
+    borderBottomLeftRadius: 10,
+    borderTopRightRadius: 10,
+    alignContent: 'center',
+    textAlign: 'center',
     fontWeight: '400',
     opacity: 0.7,
     paddingHorizontal: 8,
@@ -130,8 +139,7 @@ const style = StyleSheet.create({
 
   },
   imgThumbnail: {
-    width: 300,
-    flex: 1,
+    width: 200,
   }
 })
 

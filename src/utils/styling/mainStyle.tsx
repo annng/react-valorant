@@ -29,6 +29,12 @@ const mainStyle = StyleSheet.create({
         margin: 8,
         color: theme.colors.onBackground,
         fontFamily: 'VALORANT Regular'
+    },
+    p : {
+        fontSize : 14,
+        fontWeight: '400',
+        color: theme.colors.paragraph,
+        lineHeight: 20
     }
 })
 

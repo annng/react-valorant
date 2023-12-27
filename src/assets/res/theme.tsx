@@ -12,8 +12,10 @@ export const theme = {
     overlay: 'rgba(0,0,0,0.8)',
     overlayLight: 'rgba(255, 255, 255,0.4)',
     onBackground: '#F4F4F4',
+    paragraph : '#9a9a9a',
     primaryDark: '#D53443',
     onPrimary: '#F4F4F4',
     primary: '#ff4656',
+    primaryTransparent: "rgba(255,70,86,0.4)"
   },
 };
