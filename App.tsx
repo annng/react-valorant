@@ -43,7 +43,7 @@ function App(): React.JSX.Element {
     <PaperProvider theme={theme}>
       <NavigationContainer>
         {/* <Stack.Navigator initialRouteName='Home' screenOptions={{ */}
-          <Stack.Navigator initialRouteName='AgentDetail' screenOptions={{
+          <Stack.Navigator initialRouteName='Home' screenOptions={{
           headerStyle: {
             backgroundColor: theme.colors.background,
           },
