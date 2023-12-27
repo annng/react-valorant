@@ -42,7 +42,8 @@ function App(): React.JSX.Element {
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home' screenOptions={{
+        {/* <Stack.Navigator initialRouteName='Home' screenOptions={{ */}
+          <Stack.Navigator initialRouteName='AgentDetail' screenOptions={{
           headerStyle: {
             backgroundColor: theme.colors.background,
           },
@@ -53,7 +54,12 @@ function App(): React.JSX.Element {
           },
         }}>
           <Stack.Screen name='Home' component={HomeScreen} options={{ headerTitle: (props) => <LogoImage/> }} />
-          <Stack.Screen name='AgentDetail' component={AgentDetailScreen} options={{headerShown: true}}/>
+          <Stack.Screen name='AgentDetail' component={AgentDetailScreen} options={{headerShown: false}} initialParams={
+            {
+              uuid : "e370fa57-4757-3604-3648-499e1f642d3f",
+              title : "Gecko"
+            }
+          }/>
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

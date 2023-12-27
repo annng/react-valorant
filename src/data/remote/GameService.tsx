@@ -44,6 +44,23 @@ class GameService {
   
       return result
     }
+
+
+    public async getAgent(uuid: string): Promise<ResponseData<Agents>> {
+  
+      console.log('agents/${uuid}')
+      const result = await this.apiConfig.getAxiosInstance().get('agents/' + uuid, {
+        params: {
+          isPlayableCharacter: true
+        }
+      }).then((response => {
+        return response.data
+      }))
+  
+      return result
+    }
+
+    
   
   }
   

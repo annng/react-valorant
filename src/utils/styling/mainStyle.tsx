@@ -14,7 +14,7 @@ const mainStyle = StyleSheet.create({
         fontWeight: 'bold',
         margin: 8,
         color: theme.colors.onBackground,
-        fontFamily: 'VALORANT Regular'
+        fontFamily: 'Poppins-Bold'
     },
     h4 : {
         fontSize: 20,
