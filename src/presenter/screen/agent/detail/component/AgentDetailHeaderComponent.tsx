@@ -22,7 +22,7 @@ const AgentDetailHeaderComponent: React.FC<AgentDetailHeaderProps> = ({ agent, n
             >
                 <View style={style.headerBackroundWrapper}>
                     <ImageBackground style={[style.headerBackround]} source={{ uri: agent.fullPortrait }}
-                        imageStyle={[style.headerBackgroundAgent, { opacity: 0.1 }]}>
+                        imageStyle={[style.headerBackgroundAgent, { opacity: 0.2 }]}>
                         <ImageBackground style={style.headerBackround} source={{ uri: agent.background }}
                             tintColor={'rgba(255 255 255 / 0.1)'} imageStyle={style.headerImgBackground}>
                             <View style={style.headerWrapper}>
@@ -68,8 +68,9 @@ const style = StyleSheet.create({
         borderBottomLeftRadius: 16
     },
     headerBackgroundAgent: {
-        transform: [{ scale: 3 }],
-        resizeMode: 'cover',
+        flex: 1,
+        transform: [{ scale: 7}, {translateY: 60}, {translateX: -10}],
+        resizeMode: 'contain'
     },
     headerImgBackground: {
         overflow: 'hidden',
