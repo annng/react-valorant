@@ -23,6 +23,7 @@ import AgentDetailScreen from './src/presenter/screen/agent/detail';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { stackScreen } from './src/core/shared/Routing';
 import { createStackNavigator } from '@react-navigation/stack';
+import AgentListScreen from './src/presenter/screen/agent/list';
 
 
 
@@ -54,6 +55,7 @@ function App(): React.JSX.Element {
           },
         }}>
           <Stack.Screen name='Home' component={HomeScreen} options={{ headerTitle: (props) => <LogoImage/> }} />
+          <Stack.Screen name='AgentList' component={AgentListScreen} options={{ headerShown: true }} />
           <Stack.Screen name='AgentDetail' component={AgentDetailScreen} options={{headerShown: false}} initialParams={
             {
               uuid : "e370fa57-4757-3604-3648-499e1f642d3f",

@@ -4,6 +4,7 @@ import { RouteProp } from '@react-navigation/native';
 export type stackScreen = {
   Home: undefined;
   AgentDetail: { uuid: string | null, title : string };
+  AgentList : undefined
 };
 
 // export type HomeNavigationProp = StackNavigationProp<stackScreen, 'Home'>;

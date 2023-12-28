@@ -15,6 +15,7 @@ import AgentDetailHeaderComponent from "./component/AgentDetailHeaderComponent";
 import AgentDetailInformationComponent from "./component/AgentDetailInformationComponent";
 import AgentAbilitiesComponent from "./component/AgentAbilitiesComponent";
 import { ScrollView } from "react-native-gesture-handler";
+import AgentsTagComponent from "./component/AgentsTagComponent";
 
 type AgentDetailProps = NativeStackScreenProps<stackScreen, 'AgentDetail'>
 
@@ -71,6 +72,7 @@ const AgentDetailScreen: React.FC<AgentDetailProps> = ({ navigation, route }: Ag
           <AgentDetailHeaderComponent agent={agents.data} navigation={navigation} />
           <ScrollView onScroll={handleScroll}>
             <View style={{ flex: 1 }}>
+              <AgentsTagComponent tags={agents.data.characterTags} />
               <AgentDetailInformationComponent agent={agents.data} navigation={navigation} />
               <AgentAbilitiesComponent abilities={agents.data?.abilities} />
             </View>

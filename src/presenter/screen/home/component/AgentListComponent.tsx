@@ -49,7 +49,7 @@ const AgentListComponent: React.FC<AgentListProps> = (props) => {
 
                         <View style={CardAgent.containerAlias}>
                             <Text style={CardAgent.title}>{item.displayName}</Text>
-                            {item.characterTags != null && item.characterTags.length > 0 && (<View style={CardAgent.alias}><EllipsisText text={item.characterTags[0]} maxLength={10} style={CardAgent.aliasText} /></View>
+                            {item.role.displayName != null && (<View style={CardAgent.alias}><EllipsisText text={item.role.displayName} maxLength={10} style={CardAgent.aliasText} /></View>
                             )}
                         </View>
 

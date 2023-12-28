@@ -23,7 +23,8 @@ const AgentAbilitiesComponent: React.FC<AgentAbilitiesProps> = ({ abilities }) =
             setIsExpand(item.slot)
         }}><View style={style.itemWrapper}>
             <View style={style.itemIconWrapper}>
-                <Image source={{ uri: item.displayIcon }} style={style.itemIcon} />
+                {item.displayIcon != null && (<Image source={{ uri: item.displayIcon }} style={style.itemIcon} />)}
+                {item.displayIcon == null && (<Image source={require('../../../../../assets/img/img_logo_valorant.png')} style={[style.itemIcon, {tintColor: 'rgba(255, 255, 255, 1)'}]} />)}
             </View>
             <View style={style.itemInformationWrapper}>
                 <Text style={[mainStyle.h4, { margin: 0, marginBottom: 8 }]}>{item.displayName}</Text>

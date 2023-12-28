@@ -1,4 +1,4 @@
-import { ActivityIndicator, ImageBackground, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import HomeState from "./HomeState";
 import { ResponseData } from "../../../data/response/ResponseData";
 import { MapGame } from "../../../data/response/MapGame";
@@ -14,9 +14,9 @@ import WeaponsGridComponent from "./component/WeaponsGridComponent";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { stackScreen } from "../../../core/shared/Routing";
 
-type HomeScreenProps  = NativeStackScreenProps<stackScreen, 'Home'>
+type HomeScreenProps = NativeStackScreenProps<stackScreen, 'Home'>
 
-const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
+const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
 
     const homeState = HomeState()
 
@@ -25,9 +25,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
     const weapons: ResponseData<Array<Weapons>> = homeState.weapons || []
 
 
-    if (maps == null || agents == null || weapons == null) {
+    if (maps.data == null || agents.data == null || weapons.data == null) {
         // If imageUrl is not available, you can render a placeholder or loading indicator
-        return <ActivityIndicator size="large" color={theme.colors.primary} />;
+        return <View style={HomeStyle.wrapper}><ActivityIndicator size="large" color={theme.colors.primary} /></View>;
     }
 
     const indexRandomMap = Math.floor(Math.random() * (maps.data?.length || 0))
@@ -39,18 +39,20 @@ const HomeScreen: React.FC<HomeScreenProps> = ({navigation}) => {
                 <ScrollView>
                     <View style={HomeStyle.wrapper}>
                         <View style={HomeStyle.titleContainer}>
-                            <Text style={[mainStyle.h3, {flex: 1}]}>Agents</Text>
-                            <Text style={[mainStyle.h5, {color: theme.colors.primaryDark}]}>See More</Text>
+                            <Text style={[mainStyle.h3, { flex: 1 }]}>Agents</Text>
+                            <TouchableOpacity onPress={() => { navigation.push("AgentList") }}>
+                                <Text style={[mainStyle.h5, { color: theme.colors.primaryDark }]}>See More</Text>
+                            </TouchableOpacity>
                         </View>
-                        <AgentListComponent items={agents.data?.slice(0, 4)} style={HomeStyle.agentContent}  navigation={navigation}/>
+                        <AgentListComponent items={agents.data?.slice(0, 4)} style={HomeStyle.agentContent} navigation={navigation} />
                         <View style={HomeStyle.titleContainer}>
-                            <Text style={[mainStyle.h3, {flex: 1}]}>Maps</Text>
-                            <Text style={[mainStyle.h5, {color: theme.colors.primaryDark}]}>See More</Text>
+                            <Text style={[mainStyle.h3, { flex: 1 }]}>Maps</Text>
+                            <Text style={[mainStyle.h5, { color: theme.colors.primaryDark }]}>See More</Text>
                         </View>
                         <MapListComponent maps={maps.data?.slice(0, 4)} />
                         <View style={HomeStyle.titleContainer}>
-                            <Text style={[mainStyle.h3, {flex: 1}]}>Weapons</Text>
-                            <Text style={[mainStyle.h5, {color: theme.colors.primaryDark}]}>See More</Text>
+                            <Text style={[mainStyle.h3, { flex: 1 }]}>Weapons</Text>
+                            <Text style={[mainStyle.h5, { color: theme.colors.primaryDark }]}>See More</Text>
                         </View>
                         <WeaponsGridComponent items={weapons.data?.slice(0, 4)} />
                     </View>
@@ -80,7 +82,7 @@ const HomeStyle = StyleSheet.create({
     },
     titleContainer: {
         flexDirection: 'row',
-        flex: 1, 
+        flex: 1,
         paddingVertical: 8,
         alignItems: 'center',
         alignContent: 'space-between'

@@ -19,7 +19,8 @@ const AgentDetailInformationComponent : React.FC<AgentDetailInformationProp> = (
 
 const style = StyleSheet.create({
     informationWrapper: {
-        padding: 16
+        paddingHorizontal: 16,
+        
     },
     spaceField : {
         margin: 0,
