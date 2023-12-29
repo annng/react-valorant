@@ -58,6 +58,16 @@ class GameService {
       return result
     }
 
+
+
+    public async getMap(uuid: string): Promise<ResponseData<MapGame>> {
+      const result = await this.apiConfig.getAxiosInstance().get('maps/' + uuid).then((response => {
+        return response.data
+      }))
+  
+      return result
+    }
+
     
   
   }

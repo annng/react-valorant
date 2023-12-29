@@ -9,33 +9,50 @@ const mainStyle = StyleSheet.create({
         height: '100%',
         width: '100%'
     },
-    h3 : {
+    h3: {
         fontSize: 24,
         fontWeight: 'bold',
         margin: 8,
         color: theme.colors.onBackground,
         fontFamily: 'Poppins-Bold'
     },
-    h4 : {
+    h4: {
         fontSize: 20,
         fontWeight: 'bold',
         margin: 8,
         color: theme.colors.onBackground,
         fontFamily: 'VALORANT Regular'
     },
-    h5 : {
+    h5: {
         fontSize: 18,
         fontWeight: 'bold',
         margin: 8,
         color: theme.colors.onBackground,
         fontFamily: 'VALORANT Regular'
     },
-    p : {
-        fontSize : 14,
+    body: {
+        fontSize: 16,
+        fontWeight: '400',
+        color: theme.colors.onSurface,
+        lineHeight: 20
+    },
+    p: {
+        fontSize: 14,
         fontWeight: '400',
         color: theme.colors.paragraph,
         lineHeight: 20
-    }
+    },
+    loadingIndicator: {
+        flex: 1,
+        alignContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    backButton: {
+        position: 'absolute',
+        top: 8,
+    },
 })
 
 export default mainStyle

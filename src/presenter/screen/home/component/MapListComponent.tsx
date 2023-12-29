@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { MapGame } from '../../../../data/response/MapGame'
-import { Image, ImageBackground, StyleSheet, View } from 'react-native'
+import { Image, ImageBackground, StyleSheet, TouchableOpacity, View } from 'react-native'
 import { FlatList } from 'react-native-gesture-handler'
 import { Text } from 'react-native-paper'
 import LinearGradient from 'react-native-linear-gradient'
@@ -10,32 +10,41 @@ import { theme } from '../../../../assets/res/theme'
 
 interface MapListProps {
     maps?: MapGame[] | null,
-    style?: Object
+    style?: Object,
+    navigation: any
 }
 
-const _keyExtractor = (item: MapGame, index: number) => {
-    return item.uuid.toString();
-}
-
-const _renderItem = ({ item }: { item: MapGame }) => {
-    return (
-
-        <View style={style.wrapper}>
-            <ImageBackground source={{ uri: item.splash }} style={style.thumbnail} borderRadius={8}>
-            <LinearGradient
-                colors={['rgba(0,0,0,0.8)', 'rgba(0,0,0,0.4)', 'rgba(0,0,0,0.0)', 'rgba(0,0,0,0.4)', 'rgba(0,0,0,0.8)']}
-                start={{ x: 0, y: 0 }}
-                end={{ x: 0, y: 1 }}
-                style={style.overlay}
-            />
-            <Text style={[mainStyle.h4]}>{item.displayName}</Text>
-
-            { item.displayIcon  && (<Image source={{ uri: item.displayIcon }} style={style.mapRadar}/>)}
-            </ImageBackground>
-        </View>
-    )
-}
 const MapListComponent: React.FC<MapListProps> = props => {
+
+
+    const _keyExtractor = (item: MapGame, index: number) => {
+        return item.uuid.toString();
+    }
+
+    const _renderItem = ({ item }: { item: MapGame }) => {
+        return (
+            <TouchableOpacity onPress={() => {
+                props.navigation.push("MapDetail", {
+                    uuid: item.uuid,
+                    title: item.displayName
+                })
+            }}>
+                <View style={style.wrapper}>
+                    <ImageBackground source={{ uri: item.splash }} style={style.thumbnail} borderRadius={8}>
+                        <LinearGradient
+                            colors={['rgba(0,0,0,0.8)', 'rgba(0,0,0,0.4)', 'rgba(0,0,0,0.0)', 'rgba(0,0,0,0.4)', 'rgba(0,0,0,0.8)']}
+                            start={{ x: 0, y: 0 }}
+                            end={{ x: 0, y: 1 }}
+                            style={style.overlay}
+                        />
+                        <Text style={[mainStyle.h4]}>{item.displayName}</Text>
+
+                        {item.displayIcon && (<Image source={{ uri: item.displayIcon }} style={style.mapRadar} />)}
+                    </ImageBackground>
+                </View>
+            </TouchableOpacity>
+        )
+    }
 
     return (
         <FlatList style={[props.style]}
@@ -65,8 +74,8 @@ const style = StyleSheet.create({
     thumbnail: {
         position: 'absolute',
         top: 0,
-        left: 0, 
-        right : 0,
+        left: 0,
+        right: 0,
         bottom: 0,
         resizeMode: 'cover'
     },

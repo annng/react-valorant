@@ -24,6 +24,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { stackScreen } from './src/core/shared/Routing';
 import { createStackNavigator } from '@react-navigation/stack';
 import AgentListScreen from './src/presenter/screen/agent/list';
+import MapDetailScreen from './src/presenter/screen/map/detail';
 
 
 
@@ -43,8 +44,8 @@ function App(): React.JSX.Element {
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer>
-        {/* <Stack.Navigator initialRouteName='Home' screenOptions={{ */}
-          <Stack.Navigator initialRouteName='Home' screenOptions={{
+        <Stack.Navigator initialRouteName='Home' screenOptions={{
+          // <Stack.Navigator initialRouteName='MapDetail' screenOptions={{
           headerStyle: {
             backgroundColor: theme.colors.background,
           },
@@ -55,11 +56,17 @@ function App(): React.JSX.Element {
           },
         }}>
           <Stack.Screen name='Home' component={HomeScreen} options={{ headerTitle: (props) => <LogoImage/> }} />
-          <Stack.Screen name='AgentList' component={AgentListScreen} options={{ headerShown: true }} />
+          <Stack.Screen name='AgentList' component={AgentListScreen} options={{ headerShown: true, headerTitle: "Agents" }} />
           <Stack.Screen name='AgentDetail' component={AgentDetailScreen} options={{headerShown: false}} initialParams={
             {
               uuid : "e370fa57-4757-3604-3648-499e1f642d3f",
               title : "Gecko"
+            }
+          }/>
+          <Stack.Screen name='MapDetail' component={MapDetailScreen} options={{headerShown: false}} initialParams={
+            {
+              uuid : "92584fbe-486a-b1b2-9faa-39b0f486b498",
+              title : "Sunset"
             }
           }/>
         </Stack.Navigator>

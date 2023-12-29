@@ -49,7 +49,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
                             <Text style={[mainStyle.h3, { flex: 1 }]}>Maps</Text>
                             <Text style={[mainStyle.h5, { color: theme.colors.primaryDark }]}>See More</Text>
                         </View>
-                        <MapListComponent maps={maps.data?.slice(0, 4)} />
+                        <MapListComponent maps={maps.data?.slice(0, 4)}  navigation={navigation}/>
                         <View style={HomeStyle.titleContainer}>
                             <Text style={[mainStyle.h3, { flex: 1 }]}>Weapons</Text>
                             <Text style={[mainStyle.h5, { color: theme.colors.primaryDark }]}>See More</Text>

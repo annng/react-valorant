@@ -9,6 +9,7 @@ export const theme = {
     ...DefaultTheme.colors,
     background: '#191919',
     surface: '#1f1d1d',
+    onSurface: '#f1f1f1',
     overlay: 'rgba(0,0,0,0.8)',
     overlayLight: 'rgba(255, 255, 255,0.4)',
     onBackground: '#F4F4F4',
