@@ -1,15 +1,17 @@
 import React from 'react'
 import { MapGame } from '../../../../../data/response/MapGame'
-import { StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import mainStyle from '../../../../../utils/styling/mainStyle'
 import { theme } from '../../../../../assets/res/theme'
 import MapDetailCalloutComponent from './MapDetailCalloutComponent'
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 interface MapDetailInfoProps {
-    map: MapGame
+    map: MapGame,
+    navigation: any
 }
 
-const MapDetailInfoComponent: React.FC<MapDetailInfoProps> = ({ map }) => {
+const MapDetailInfoComponent: React.FC<MapDetailInfoProps> = ({ map, navigation }) => {
     const callSign = map.mapUrl.split("/")
 
     return (
@@ -37,6 +39,12 @@ const MapDetailInfoComponent: React.FC<MapDetailInfoProps> = ({ map }) => {
 
                 <Text style={[mainStyle.h4, style.spaceField]}>// SITE</Text>
                 <MapDetailCalloutComponent callouts={map.callouts} />
+
+                <TouchableOpacity onPress={() => {
+                    navigation.push("ZoomImage", {url : map.displayIcon})
+                }}>
+                    <Image source={{ uri: map.displayIcon }} style={style.siteMap} />
+                </TouchableOpacity>
             </View>
         </View>
     )
@@ -62,6 +70,15 @@ const style = StyleSheet.create({
         flexDirection: 'row',
         alignContent: 'space-around',
         justifyContent: 'space-between',
+    },
+    siteMap: {
+        flex: 1,
+        marginVertical: 16,
+        height: 350,
+        resizeMode: 'contain',
+        shadowColor: theme.colors.onBackground,
+        shadowOpacity: 0.5,
+        elevation: 0.5
     }
 
 })

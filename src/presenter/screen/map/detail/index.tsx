@@ -66,11 +66,12 @@ const MapDetailScreen: React.FC<MapDetailProps> = ({ navigation, route }: MapDet
                         }}
                         closeIconColor="#fff"
                     />
-                    <MapDetailInfoComponent map={maps.data} />
-
-                    <HeaderBackButton onPress={() => navigation.pop()} style={mainStyle.backButton} tintColor={theme.colors.onBackground} />
+                    <MapDetailInfoComponent map={maps.data}  navigation={navigation}/>
                 </View>
             </ScrollView>
+
+            <HeaderBackButton onPress={() => navigation.pop()} style={mainStyle.backButton} tintColor={theme.colors.onBackground} />
+            
         </SafeAreaView>
     )
 }

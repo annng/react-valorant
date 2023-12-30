@@ -25,6 +25,7 @@ import { stackScreen } from './src/core/shared/Routing';
 import { createStackNavigator } from '@react-navigation/stack';
 import AgentListScreen from './src/presenter/screen/agent/list';
 import MapDetailScreen from './src/presenter/screen/map/detail';
+import ZoomableImage from './src/utils/component/ZoomableImage';
 
 
 
@@ -55,20 +56,26 @@ function App(): React.JSX.Element {
             fontWeight: 'bold',
           },
         }}>
-          <Stack.Screen name='Home' component={HomeScreen} options={{ headerTitle: (props) => <LogoImage/> }} />
+          <Stack.Screen name='Home' component={HomeScreen} options={{ headerTitle: (props) => <LogoImage /> }} />
           <Stack.Screen name='AgentList' component={AgentListScreen} options={{ headerShown: true, headerTitle: "Agents" }} />
-          <Stack.Screen name='AgentDetail' component={AgentDetailScreen} options={{headerShown: false}} initialParams={
+          <Stack.Screen name='AgentDetail' component={AgentDetailScreen} options={{ headerShown: false }} initialParams={
             {
-              uuid : "e370fa57-4757-3604-3648-499e1f642d3f",
-              title : "Gecko"
+              uuid: "e370fa57-4757-3604-3648-499e1f642d3f",
+              title: "Gecko"
             }
-          }/>
-          <Stack.Screen name='MapDetail' component={MapDetailScreen} options={{headerShown: false}} initialParams={
+          } />
+          <Stack.Screen name='MapDetail' component={MapDetailScreen} options={{ headerShown: false }} initialParams={
             {
-              uuid : "92584fbe-486a-b1b2-9faa-39b0f486b498",
-              title : "Sunset"
+              uuid: "92584fbe-486a-b1b2-9faa-39b0f486b498",
+              title: "Sunset"
             }
-          }/>
+          } />
+
+          <Stack.Screen name='ZoomImage' component={ZoomableImage} options={{ headerShown: false }} initialParams={
+            {
+              url: "https://www.cnet.com/a/img/resize/8bc1fe51f38b84a7ee99cae6d2cdee3709c6db9d/hub/2021/09/02/1511ef05-2457-4272-918d-6719d4897e65/beta-key-art-valorant.jpg?auto=webp&fit=crop&height=675&width=1200"
+            }
+          } />
         </Stack.Navigator>
       </NavigationContainer>
     </PaperProvider>

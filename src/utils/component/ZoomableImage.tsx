@@ -1,9 +1,19 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { useState, useRef, createRef } from 'react';
 import { View, Text, Image, Animated, Dimensions } from 'react-native';
 import { HandlerStateChangeEvent, PanGestureHandler, PinchGestureHandler, State } from 'react-native-gesture-handler';
-const ZoomableImage = () => {
+import { stackScreen } from '../../core/shared/Routing';
+import { theme } from '../../assets/res/theme';
+import { HeaderBackButton } from '@react-navigation/elements';
+import mainStyle from '../styling/mainStyle';
+
+type ZoomableImageProps = NativeStackScreenProps<stackScreen, 'ZoomImage'>
+
+const ZoomableImage = ({ navigation, route }: ZoomableImageProps) => {
 
   const [panEnabled, setPanEnabled] = useState(false);
+
+  const { url } = route.params
 
   const scale = useRef(new Animated.Value(1)).current;
   const translateX = useRef(new Animated.Value(0)).current;
@@ -54,7 +64,7 @@ const ZoomableImage = () => {
   };
 
   return (
-    <View>
+    <View style={{flex: 1, backgroundColor: theme.colors.background}}>
       <PanGestureHandler
         onGestureEvent={onPanEvent}
         ref={panRef}
@@ -71,7 +81,7 @@ const ZoomableImage = () => {
             onHandlerStateChange={handlePinchStateChange}
           >
             <Animated.Image
-              source={{ uri: 'https://i.picsum.photos/id/1039/6945/4635.jpg?hmac=tdgHDygif2JPCTFMM7KcuOAbwEU11aucKJ8eWcGD9_Q' }}
+              source={{ uri: url }}
               style={{
                 width: '100%',
                 height: '100%',
@@ -84,6 +94,9 @@ const ZoomableImage = () => {
         </Animated.View>
 
       </PanGestureHandler>
+
+      <HeaderBackButton onPress={() => navigation.pop()} style={mainStyle.backButton} tintColor={theme.colors.onBackground} />
+      
     </View>
   );
 };

@@ -6,6 +6,7 @@ export type stackScreen = {
   AgentDetail: { uuid: string | null, title : string };
   MapDetail: { uuid: string | null, title : string };
   AgentList : undefined
+  ZoomImage : {url : string}
 };
 
 // export type HomeNavigationProp = StackNavigationProp<stackScreen, 'Home'>;

@@ -50,6 +50,7 @@ const mainStyle = StyleSheet.create({
     },
 
     backButton: {
+        flex: 1,
         position: 'absolute',
         top: 8,
     },
