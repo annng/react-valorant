@@ -4,12 +4,13 @@ import { View, ImageBackground, Text, Image, StyleSheet } from "react-native"
 import { gradientAgentColor } from "../../../../../core/utils/ext/ColorExt"
 import { theme } from "../../../../../assets/res/theme"
 import { HeaderBackButton } from "@react-navigation/elements"
+import { useNavigation } from "../../../../../core/shared/Routing"
 
 interface AgentDetailHeaderProps {
     agent: Agents
-    navigation: any
 }
-const AgentDetailHeaderComponent: React.FC<AgentDetailHeaderProps> = ({ agent, navigation }) => {
+const AgentDetailHeaderComponent: React.FC<AgentDetailHeaderProps> = ({ agent }) => {
+    const {navigate, pop} = useNavigation()
     return (
         <View style={style.wrapper}>
             <LinearGradient
@@ -31,13 +32,13 @@ const AgentDetailHeaderComponent: React.FC<AgentDetailHeaderProps> = ({ agent, n
                                     <Text style={style.headerAgentRole}>{agent.role?.displayName}</Text>
                                 </View>
                                 <Image style={style.imgThumbnail} source={{ uri: agent.fullPortrait ? agent.fullPortrait : agent.displayIcon }} />
-                                <HeaderBackButton onPress={() => navigation.pop} />
+                                <HeaderBackButton onPress={() => pop} />
                             </View>
                         </ImageBackground>
                     </ImageBackground>
                 </View>
             </LinearGradient>
-            <HeaderBackButton onPress={() => navigation.pop()} style={style.backButton} tintColor={theme.colors.onBackground} />
+            <HeaderBackButton onPress={() => pop()} style={style.backButton} tintColor={theme.colors.onBackground} />
 
         </View>
     )

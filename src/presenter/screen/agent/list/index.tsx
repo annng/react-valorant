@@ -29,7 +29,7 @@ const AgentListScreen: React.FC<AgentListProps> = ({ navigation, route }) => {
                     onChangeText={newText => state.searchAgents(newText)}
                     defaultValue={keyword}
                 />
-                <AgentsGridComponent agents={agents} navigation={navigation} />
+                <AgentsGridComponent agents={agents}/>
             </View>
         </SafeAreaView>
     )

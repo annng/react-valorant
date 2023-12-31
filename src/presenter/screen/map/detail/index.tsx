@@ -1,7 +1,7 @@
 import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack'
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { stackScreen } from '../../../../core/shared/Routing'
-import { ScrollView, StyleSheet, View } from 'react-native'
+import { Animated, ScrollView, StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { theme } from '../../../../assets/res/theme'
 import { useNavigation } from '@react-navigation/native'
@@ -38,6 +38,22 @@ const MapDetailScreen: React.FC<MapDetailProps> = ({ navigation, route }: MapDet
         fetchData();
     }, [uuid, navigation])
 
+    const scrollY = new Animated.Value(0);
+    const [backgroundColor, setBackgroundColor] = useState('rgba(25,25,25, 0)'); // Initial background color
+
+    useEffect(() => {
+        const listenerId = scrollY.addListener(({ value }) => {
+            // Update background color based on scroll position
+            const alpha = Math.min(value / 100, 1); // Adjust the alpha value based on your needs
+            setBackgroundColor(`rgba(25,25,25,${alpha})`);
+        });
+
+        return () => {
+            // Clean up the listener when the component is unmounted
+            scrollY.removeListener(listenerId);
+        };
+    }, [scrollY]);
+
 
     if (maps.data == null) {
         return (
@@ -49,7 +65,10 @@ const MapDetailScreen: React.FC<MapDetailProps> = ({ navigation, route }: MapDet
 
     return (
         <SafeAreaView style={style.safeArea}>
-            <ScrollView style={style.wrapper}>
+            <ScrollView style={style.wrapper}
+                onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], { useNativeDriver: false })}
+                scrollEventThrottle={16}
+            >
                 <View style={style.wrapper}>
                     <ImageSlider
                         caroselImageContainerStyle={style.imgSlider}
@@ -66,12 +85,13 @@ const MapDetailScreen: React.FC<MapDetailProps> = ({ navigation, route }: MapDet
                         }}
                         closeIconColor="#fff"
                     />
-                    <MapDetailInfoComponent map={maps.data}  navigation={navigation}/>
+                    <MapDetailInfoComponent map={maps.data} />
                 </View>
             </ScrollView>
+            <View style={[mainStyle.containerBack, { backgroundColor: backgroundColor }]}>
+                <HeaderBackButton onPress={() => navigation.pop()} style={mainStyle.backButton} tintColor={theme.colors.onBackground} />
+            </View>
 
-            <HeaderBackButton onPress={() => navigation.pop()} style={mainStyle.backButton} tintColor={theme.colors.onBackground} />
-            
         </SafeAreaView>
     )
 }

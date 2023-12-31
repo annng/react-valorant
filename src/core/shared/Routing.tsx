@@ -1,6 +1,7 @@
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-
+import { useNavigation as useReactNavigation } from '@react-navigation/native'
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 export type stackScreen = {
   Home: undefined;
   AgentDetail: { uuid: string | null, title : string };
@@ -9,6 +10,9 @@ export type stackScreen = {
   ZoomImage : {url : string}
 };
 
+export const useNavigation = () => {
+  return useReactNavigation<NativeStackNavigationProp<stackScreen>>();
+};
 // export type HomeNavigationProp = StackNavigationProp<stackScreen, 'Home'>;
 // export type HomeRouteProp = RouteProp<stackScreen, 'ScreenA'>;
 

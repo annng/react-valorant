@@ -5,12 +5,14 @@ import { Dimensions, Image, StyleSheet, Text, TouchableOpacity, View } from 'rea
 import { theme } from '../../../../../assets/res/theme'
 import LinearGradient from 'react-native-linear-gradient'
 import EllipsisText from '../../../../../utils/component/EllipsizeText'
+import { useNavigation } from '../../../../../core/shared/Routing'
 
 interface AgentsGridProps {
     agents: Agents[]
-    navigation: any
 }
-const AgentsGridComponent: React.FC<AgentsGridProps> = ({ agents, navigation }) => {
+const AgentsGridComponent: React.FC<AgentsGridProps> = ({ agents }) => {
+
+    const {navigate} = useNavigation()
 
     const [visibleData, setVisibleData] = useState<Agents[]>([]);
 
@@ -35,7 +37,7 @@ const AgentsGridComponent: React.FC<AgentsGridProps> = ({ agents, navigation }) 
 
         return (
             <TouchableOpacity onPress={() => {
-                navigation.push("AgentDetail", {
+                navigate("AgentDetail", {
                     uuid: item.uuid,
                     title: item.displayName
                 });

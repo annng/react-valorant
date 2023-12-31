@@ -1,18 +1,19 @@
 import React from 'react'
 import { MapGame } from '../../../../../data/response/MapGame'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, Platform, StyleSheet, Text, View } from 'react-native'
 import mainStyle from '../../../../../utils/styling/mainStyle'
 import { theme } from '../../../../../assets/res/theme'
 import MapDetailCalloutComponent from './MapDetailCalloutComponent'
 import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useNavigation } from '../../../../../core/shared/Routing'
 
 interface MapDetailInfoProps {
-    map: MapGame,
-    navigation: any
+    map: MapGame
 }
 
-const MapDetailInfoComponent: React.FC<MapDetailInfoProps> = ({ map, navigation }) => {
+const MapDetailInfoComponent: React.FC<MapDetailInfoProps> = ({ map }) => {
     const callSign = map.mapUrl.split("/")
+    const { navigate } = useNavigation();
 
     return (
         <View style={style.wrapper}>
@@ -41,7 +42,7 @@ const MapDetailInfoComponent: React.FC<MapDetailInfoProps> = ({ map, navigation 
                 <MapDetailCalloutComponent callouts={map.callouts} />
 
                 <TouchableOpacity onPress={() => {
-                    navigation.push("ZoomImage", {url : map.displayIcon})
+                    navigate('ZoomImage', { url: map.displayIcon })
                 }}>
                     <Image source={{ uri: map.displayIcon }} style={style.siteMap} />
                 </TouchableOpacity>
@@ -77,8 +78,9 @@ const style = StyleSheet.create({
         height: 350,
         resizeMode: 'contain',
         shadowColor: theme.colors.onBackground,
-        shadowOpacity: 0.5,
-        elevation: 0.5
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
     }
 
 })

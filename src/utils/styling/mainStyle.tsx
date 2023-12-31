@@ -48,11 +48,16 @@ const mainStyle = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-
+    containerBack: {
+        flex: 1,
+        flexGrow: 1,
+        width : '100%',
+        position: 'absolute',
+        top: 0,
+        height: 52
+    },
     backButton: {
         flex: 1,
-        position: 'absolute',
-        top: 8,
     },
 })
 

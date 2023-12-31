@@ -4,8 +4,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import mainStyle from '../../../../../utils/styling/mainStyle'
 
 interface AgentDetailInformationProp{
-    agent : Agents,
-    navigation: any
+    agent : Agents
 }
 const AgentDetailInformationComponent : React.FC<AgentDetailInformationProp> = ({agent}) => {
   return (

@@ -69,11 +69,11 @@ const AgentDetailScreen: React.FC<AgentDetailProps> = ({ navigation, route }: Ag
     <View style={style.wrapper}>
       {(agents.data != null) && (
         <View style={style.wrapper}>
-          <AgentDetailHeaderComponent agent={agents.data} navigation={navigation} />
+          <AgentDetailHeaderComponent agent={agents.data} />
           <ScrollView onScroll={handleScroll}>
             <View style={{ flex: 1 }}>
               <AgentsTagComponent tags={agents.data.characterTags} />
-              <AgentDetailInformationComponent agent={agents.data} navigation={navigation} />
+              <AgentDetailInformationComponent agent={agents.data} />
               <AgentAbilitiesComponent abilities={agents.data?.abilities} />
             </View>
           </ScrollView>
