@@ -2,67 +2,24 @@ This is a new [**React Native**](https://reactnative.dev) project, bootstrapped 
 
 # Getting Started
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+| Home | Agent List | Agent Detail |  Map Detail | 
+|-------- | -----------| ----------| -------- |
+| <img src="https://github.com/annng/react-valorant/assets/31025016/b340bb0e-0c78-4b09-8b2a-625d7884af48" alt= “” width="300px"> | <img src="https://github.com/annng/react-valorant/assets/31025016/2a763485-844b-486d-a9b8-904dcce7be5e" alt= “” width="300px"> | <img src="https://github.com/annng/react-valorant/assets/31025016/5027e6fc-171a-406f-809b-e386331dd5d3" alt= “” width="300px"> |  <img width="300px" alt="image" src="https://github.com/annng/react-valorant/assets/31025016/735e83e9-a5cf-4b26-af67-caa76088082e"> |
 
-## Step 1: Start the Metro Server
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+# Library
+ ## Network
+ - [Axios](https://www.npmjs.com/package/react-native-axios)
+ - [Valorant API](https://valorant-api.com/)
+   
+## Custom Component
+ - [Image Slider](https://www.npmjs.com/package/@pembajak/react-native-image-slider-banner)
+ - [Linear Gradient](https://github.com/react-native-linear-gradient/react-native-linear-gradient)
+ - [Image Zoom](https://www.npmjs.com/package/@likashefqet/react-native-image-zoom)
 
-To start Metro, run the following command from the _root_ of your React Native project:
-
-```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
-```
-
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
-```bash
-# using npm
-npm run android
-
-# OR using Yarn
-yarn android
-```
-
-### For iOS
-
-```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
-```
-
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
-
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+# Tech Stack
+ - Stack Native Navigation (routing)
+ - Hook (management state)
 
 # Troubleshooting
 
