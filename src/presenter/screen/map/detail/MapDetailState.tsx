@@ -13,13 +13,23 @@ const MapDetailState = () => {
         data: null
     })
 
+    const [mapList , setMapList] = useState<ResponseData<Array<MapGame>>>({
+        status: 0,
+        data: null
+    })
+
 
     const fetchMaps = async (uuid : string) => {
         const data = await gameService.getMap(uuid);
         setMaps(data) 
     }
 
-    return {fetchMaps, maps}
+    const fetchListMaps = async () => {
+        const data = await gameService.getMaps()
+        setMapList(data)
+    }
+
+    return {fetchMaps, maps, fetchListMaps, mapList}
 }
 
 export default MapDetailState

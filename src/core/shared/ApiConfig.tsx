@@ -18,6 +18,7 @@ class ApiConfig {
 
   public getAxiosInstance(): AxiosInstance {
     this.setBaseUrl("https://valorant-api.com/v1/")
+    // this.setBaseUrl("https://api.valorantfiles.com/v3/")
     return this.axiosInstance;
   }
 

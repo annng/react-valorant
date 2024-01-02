@@ -16,6 +16,7 @@ export const theme = {
     paragraph : '#9a9a9a',
     primaryDark: '#D53443',
     onPrimary: '#F4F4F4',
+    title : '#A69292',
     primary: '#ff4656',
     primaryTransparent: "rgba(255,70,86,0.4)"
   },

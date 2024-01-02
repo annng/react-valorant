@@ -12,7 +12,7 @@ const MapDetailCalloutComponent: React.FC<MapDetailCalloutProps> = ({ callouts }
 
 
     const _keyExtractor = (item: Callout, index: number) => {
-        return item.regionName.toString();
+        return `${item.regionName}-${item.superRegionName}`;
     }
 
 

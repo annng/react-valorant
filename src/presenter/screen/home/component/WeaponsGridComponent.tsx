@@ -30,7 +30,7 @@ const WeaponsGridComponent: React.FC<WeaponsGridProps> = (props) => {
     };
 
     const _renderItem = ({ item }: { item: Weapons }) => {
-        const weaponImage = item.skins[0].chromas ? item.skins[0].chromas[0].fullRender : item.displayIcon
+        const weaponImage = item.displayIcon
         const weaponBackground = item.skins[0].chromas[0].swatch
         return (
             <View style={style.wrapper}>

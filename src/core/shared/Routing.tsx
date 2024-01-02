@@ -6,7 +6,9 @@ export type stackScreen = {
   Home: undefined;
   AgentDetail: { uuid: string | null, title : string };
   MapDetail: { uuid: string | null, title : string };
+  WeaponDetail: { uuid: string | null, title : string };
   AgentList : undefined
+  MapList : undefined
   ZoomImage : {url : string}
 };
 

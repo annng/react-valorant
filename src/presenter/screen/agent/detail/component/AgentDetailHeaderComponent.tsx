@@ -10,7 +10,7 @@ interface AgentDetailHeaderProps {
     agent: Agents
 }
 const AgentDetailHeaderComponent: React.FC<AgentDetailHeaderProps> = ({ agent }) => {
-    const {navigate, pop} = useNavigation()
+    const { navigate, pop } = useNavigation()
     return (
         <View style={style.wrapper}>
             <LinearGradient
@@ -29,7 +29,10 @@ const AgentDetailHeaderComponent: React.FC<AgentDetailHeaderProps> = ({ agent })
                             <View style={style.headerWrapper}>
                                 <View style={style.headerAgentWrapper}>
                                     <Text style={style.headerAgentTitle}>{agent.displayName}</Text>
-                                    <Text style={style.headerAgentRole}>{agent.role?.displayName}</Text>
+                                    <View style={style.headerWrapperRole}>
+                                        <Image source={{ uri: agent.role.displayIcon }} style={style.headerRoleIcon} />
+                                        <Text style={style.headerAgentRole}>{agent.role?.displayName}</Text>
+                                    </View>
                                 </View>
                                 <Image style={style.imgThumbnail} source={{ uri: agent.fullPortrait ? agent.fullPortrait : agent.displayIcon }} />
                                 <HeaderBackButton onPress={() => pop} />
@@ -70,7 +73,7 @@ const style = StyleSheet.create({
     },
     headerBackgroundAgent: {
         flex: 1,
-        transform: [{ scale: 7}, {translateY: 60}, {translateX: -10}],
+        transform: [{ scale: 7 }, { translateY: 60 }, { translateX: -10 }],
         resizeMode: 'contain'
     },
     headerImgBackground: {
@@ -89,6 +92,21 @@ const style = StyleSheet.create({
         alignContent: 'center',
         justifyContent: 'center'
     },
+    headerWrapperRole: {
+        flexDirection: 'row',
+        backgroundColor: theme.colors.overlay,
+        borderBottomLeftRadius: 10,
+        borderTopRightRadius: 10,
+        alignItems: 'center',
+        opacity: 0.7,
+        paddingHorizontal: 8,
+        paddingVertical: 6,
+    },
+    headerRoleIcon: {
+        width: 18,
+        marginRight: 8,
+        height: 18
+    },
     headerAgentTitle: {
         fontSize: 24,
         color: theme.colors.onBackground,
@@ -97,19 +115,12 @@ const style = StyleSheet.create({
         fontFamily: 'Popppins-Bold'
     },
     headerAgentRole: {
-        fontSize: 14,
-        backgroundColor: theme.colors.overlay,
         color: theme.colors.onBackground,
-        borderBottomLeftRadius: 10,
-        borderTopRightRadius: 10,
+        fontSize: 14,
         alignContent: 'center',
         fontFamily: 'Popppins-Medium',
         textAlign: 'center',
-        fontWeight: '400',
-        opacity: 0.7,
-        paddingHorizontal: 8,
-        paddingVertical: 6
-
+        fontWeight: '400'
     },
     imgThumbnail: {
         width: 200,

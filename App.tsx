@@ -26,6 +26,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import AgentListScreen from './src/presenter/screen/agent/list';
 import MapDetailScreen from './src/presenter/screen/map/detail';
 import ZoomableImage from './src/utils/component/ZoomableImage';
+import MapListScreen from './src/presenter/screen/map/list';
 
 
 
@@ -64,6 +65,7 @@ function App(): React.JSX.Element {
               title: "Gecko"
             }
           } />
+          <Stack.Screen name='MapList' component={MapListScreen} options={{ headerShown: true, headerTitle: "Maps" }} />
           <Stack.Screen name='MapDetail' component={MapDetailScreen} options={{ headerShown: false }} initialParams={
             {
               uuid: "92584fbe-486a-b1b2-9faa-39b0f486b498",

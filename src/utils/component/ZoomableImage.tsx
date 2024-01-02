@@ -64,7 +64,7 @@ const ZoomableImage = ({ navigation, route }: ZoomableImageProps) => {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: theme.colors.background}}>
+    <View style={{ flex: 1, backgroundColor: theme.colors.background }}>
       <PanGestureHandler
         onGestureEvent={onPanEvent}
         ref={panRef}
@@ -95,8 +95,10 @@ const ZoomableImage = ({ navigation, route }: ZoomableImageProps) => {
 
       </PanGestureHandler>
 
-      <HeaderBackButton onPress={() => navigation.pop()} style={mainStyle.backButton} tintColor={theme.colors.onBackground} />
-      
+      <View style={[mainStyle.containerBack]}>
+        <HeaderBackButton onPress={() => navigation.pop()} style={mainStyle.backButton} tintColor={theme.colors.onBackground} />
+      </View>
+
     </View>
   );
 };

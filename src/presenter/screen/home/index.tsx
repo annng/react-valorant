@@ -47,9 +47,11 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
                         <AgentListComponent items={agents.data?.slice(0, 4)} style={HomeStyle.agentContent} navigation={navigation} />
                         <View style={HomeStyle.titleContainer}>
                             <Text style={[mainStyle.h3, { flex: 1 }]}>Maps</Text>
+                            <TouchableOpacity onPress={() => { navigation.push("MapList") }}>
                             <Text style={[mainStyle.h5, { color: theme.colors.primaryDark }]}>See More</Text>
+                            </TouchableOpacity>
                         </View>
-                        <MapListComponent maps={maps.data?.slice(0, 4)}  navigation={navigation}/>
+                        <MapListComponent maps={maps.data?.slice(0, 4)}/>
                         <View style={HomeStyle.titleContainer}>
                             <Text style={[mainStyle.h3, { flex: 1 }]}>Weapons</Text>
                             <Text style={[mainStyle.h5, { color: theme.colors.primaryDark }]}>See More</Text>

@@ -7,15 +7,15 @@ import { Text } from 'react-native-paper'
 import LinearGradient from 'react-native-linear-gradient'
 import mainStyle from '../../../../utils/styling/mainStyle'
 import { theme } from '../../../../assets/res/theme'
+import { useNavigation } from '../../../../core/shared/Routing'
 
 interface MapListProps {
     maps?: MapGame[] | null,
-    style?: Object,
-    navigation: any
+    style?: Object
 }
 
 const MapListComponent: React.FC<MapListProps> = props => {
-
+    const {navigate} = useNavigation()
 
     const _keyExtractor = (item: MapGame, index: number) => {
         return item.uuid.toString();
@@ -24,7 +24,7 @@ const MapListComponent: React.FC<MapListProps> = props => {
     const _renderItem = ({ item }: { item: MapGame }) => {
         return (
             <TouchableOpacity onPress={() => {
-                props.navigation.push("MapDetail", {
+                navigate("MapDetail", {
                     uuid: item.uuid,
                     title: item.displayName
                 })

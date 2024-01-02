@@ -40,12 +40,14 @@ const MapDetailInfoComponent: React.FC<MapDetailInfoProps> = ({ map }) => {
 
                 <Text style={[mainStyle.h4, style.spaceField]}>// SITE</Text>
                 <MapDetailCalloutComponent callouts={map.callouts} />
+                {map.displayIcon != null && (
+                    <TouchableOpacity onPress={() => {
+                        navigate('ZoomImage', { url: map.displayIcon })
+                    }}>
+                        <Image source={{ uri: map.displayIcon }} style={style.siteMap} />
+                    </TouchableOpacity>
+                )}
 
-                <TouchableOpacity onPress={() => {
-                    navigate('ZoomImage', { url: map.displayIcon })
-                }}>
-                    <Image source={{ uri: map.displayIcon }} style={style.siteMap} />
-                </TouchableOpacity>
             </View>
         </View>
     )

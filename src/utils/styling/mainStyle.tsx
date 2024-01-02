@@ -42,6 +42,12 @@ const mainStyle = StyleSheet.create({
         color: theme.colors.paragraph,
         lineHeight: 20
     },
+    caption: {
+        fontSize: 12,
+        fontWeight: '400',
+        color: theme.colors.paragraph,
+        lineHeight: 18
+    },
     loadingIndicator: {
         flex: 1,
         alignContent: 'center',
@@ -59,6 +65,20 @@ const mainStyle = StyleSheet.create({
     backButton: {
         flex: 1,
     },
+    wrapper: {
+        flex: 1,
+        backgroundColor: theme.colors.background
+    },
+    searchBar: {
+        borderColor: theme.colors.paragraph,
+        borderWidth: 1,
+        marginHorizontal: 8,
+        marginVertical: 8,
+        paddingHorizontal: 12,
+        height: 48,
+        borderRadius: 12,
+        color: theme.colors.onBackground
+    }
 })
 
 export default mainStyle

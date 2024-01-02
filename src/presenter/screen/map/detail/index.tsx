@@ -1,11 +1,9 @@
-import { NativeStackNavigationProp, NativeStackScreenProps } from '@react-navigation/native-stack'
+import { NativeStackScreenProps } from '@react-navigation/native-stack'
 import React, { useEffect, useState } from 'react'
 import { stackScreen } from '../../../../core/shared/Routing'
 import { Animated, ScrollView, StyleSheet, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { theme } from '../../../../assets/res/theme'
-import { useNavigation } from '@react-navigation/native'
-import AgentDetailState from '../../agent/detail/AgentDetailState'
 import { ImageSlider } from 'react-native-image-slider-banner'
 import { MapGame } from '../../../../data/response/MapGame'
 import MapDetailState from './MapDetailState'
@@ -14,15 +12,16 @@ import { ActivityIndicator } from 'react-native-paper'
 import mainStyle from '../../../../utils/styling/mainStyle'
 import MapDetailInfoComponent from './component/MapDetailInfoComponent'
 import { HeaderBackButton } from '@react-navigation/elements'
+import MapListComponent from '../../home/component/MapListComponent'
 
 type MapDetailProps = NativeStackScreenProps<stackScreen, 'MapDetail'>
 
 const MapDetailScreen: React.FC<MapDetailProps> = ({ navigation, route }: MapDetailProps) => {
 
     const mapDetailState = MapDetailState()
+    const mapList = mapDetailState.mapList
 
     const { uuid, title } = route.params
-    useNavigation<NativeStackNavigationProp<stackScreen>>()
 
     const maps: ResponseData<MapGame> = mapDetailState.maps
     // parse data && request detail data
@@ -30,6 +29,7 @@ const MapDetailScreen: React.FC<MapDetailProps> = ({ navigation, route }: MapDet
         const fetchData = async () => {
             if (uuid != null) {
                 await mapDetailState.fetchMaps(uuid);
+                await mapDetailState.fetchListMaps()
             } else {
                 navigation.pop();
             }
@@ -44,7 +44,7 @@ const MapDetailScreen: React.FC<MapDetailProps> = ({ navigation, route }: MapDet
     useEffect(() => {
         const listenerId = scrollY.addListener(({ value }) => {
             // Update background color based on scroll position
-            const alpha = Math.min(value / 100, 1); // Adjust the alpha value based on your needs
+            const alpha = Math.min(value / 200, 1); // Adjust the alpha value based on your needs
             setBackgroundColor(`rgba(25,25,25,${alpha})`);
         });
 
@@ -76,7 +76,7 @@ const MapDetailScreen: React.FC<MapDetailProps> = ({ navigation, route }: MapDet
                         indicatorContainerStyle={{ position: 'relative', top: 10 }}
                         data={[
                             { img: maps.data.splash },
-                            { img: maps.data.displayIcon },
+                            ...(maps.data.displayIcon ? [{ img: maps.data.displayIcon }] : []),
                         ]}
                         activeIndicatorStyle={{ backgroundColor: theme.colors.primary }}
                         autoPlay={false}
@@ -86,6 +86,7 @@ const MapDetailScreen: React.FC<MapDetailProps> = ({ navigation, route }: MapDet
                         closeIconColor="#fff"
                     />
                     <MapDetailInfoComponent map={maps.data} />
+                    <MapListComponent maps={mapList.data?.filter(e => e.displayName != maps.data?.displayName)}/>
                 </View>
             </ScrollView>
             <View style={[mainStyle.containerBack, { backgroundColor: backgroundColor }]}>

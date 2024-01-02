@@ -7,6 +7,7 @@ import AgentsGridComponent from './component/AgentsGridComponent'
 import AgentListState from './AgentListState'
 import { Agents } from '../../../../data/response/Agents'
 import { theme } from '../../../../assets/res/theme'
+import mainStyle from '../../../../utils/styling/mainStyle'
 
 
 type AgentListProps = NativeStackScreenProps<stackScreen, 'AgentList'>
@@ -17,13 +18,11 @@ const AgentListScreen: React.FC<AgentListProps> = ({ navigation, route }) => {
 
     var agents: Array<Agents> = state.visibleAgents
 
-
-
     return (
-        <SafeAreaView style={style.wrapper}>
-            <View style={style.wrapper}>
+        <SafeAreaView style={mainStyle.wrapper}>
+            <View style={mainStyle.wrapper}>
                 <TextInput
-                    style={style.searchBar}
+                    style={mainStyle.searchBar}
                     placeholderTextColor={theme.colors.paragraph}
                     placeholder="Type Agents Name..."
                     onChangeText={newText => state.searchAgents(newText)}
@@ -36,19 +35,6 @@ const AgentListScreen: React.FC<AgentListProps> = ({ navigation, route }) => {
 }
 
 const style = StyleSheet.create({
-    wrapper: {
-        flex: 1,
-        backgroundColor: theme.colors.background
-    },
-    searchBar: {
-        borderColor: theme.colors.paragraph,
-        borderWidth: 1,
-        marginHorizontal: 8,
-        marginVertical: 8,
-        paddingHorizontal: 12,
-        height: 48,
-        borderRadius: 12,
-        color: theme.colors.onBackground
-    }
+    
 })
 export default AgentListScreen
