@@ -17,6 +17,7 @@ export const theme = {
     primaryDark: '#D53443',
     onPrimary: '#F4F4F4',
     title : '#A69292',
+    secondary : "#afff46",
     primary: '#ff4656',
     primaryTransparent: "rgba(255,70,86,0.4)"
   },

@@ -1537,6 +1537,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@nonam4/react-native-bottom-sheet@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@nonam4/react-native-bottom-sheet/-/react-native-bottom-sheet-2.2.4.tgz#bdf5ef5f16109fb5b420e06f45ea9cbeb8c4940c"
+  integrity sha512-ajyLZ6ZXUvQtnvReyLBeDbxcEq9CQkcloNi04QNYo4Lpg2WJIrxXAygAL1y219DzRp1wB7a5oQEQ4KoVci6Z/w==
+
 "@react-native-async-storage/async-storage@^1.21.0":
   version "1.21.0"
   resolved "https://registry.yarnpkg.com/@react-native-async-storage/async-storage/-/async-storage-1.21.0.tgz#d7e370028e228ab84637016ceeb495878b7a44c8"

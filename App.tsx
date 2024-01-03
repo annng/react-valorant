@@ -27,6 +27,7 @@ import AgentListScreen from './src/presenter/screen/agent/list';
 import MapDetailScreen from './src/presenter/screen/map/detail';
 import ZoomableImage from './src/utils/component/ZoomableImage';
 import MapListScreen from './src/presenter/screen/map/list';
+import WeaponDetailScreen from './src/presenter/screen/weapon/detail';
 
 
 
@@ -46,8 +47,8 @@ function App(): React.JSX.Element {
   return (
     <PaperProvider theme={theme}>
       <NavigationContainer>
-        <Stack.Navigator initialRouteName='Home' screenOptions={{
-          // <Stack.Navigator initialRouteName='MapDetail' screenOptions={{
+        {/* <Stack.Navigator initialRouteName='Home' screenOptions={{ */}
+          <Stack.Navigator initialRouteName='WeaponDetail' screenOptions={{
           headerStyle: {
             backgroundColor: theme.colors.background,
           },
@@ -70,6 +71,12 @@ function App(): React.JSX.Element {
             {
               uuid: "92584fbe-486a-b1b2-9faa-39b0f486b498",
               title: "Sunset"
+            }
+          } />
+          <Stack.Screen name='WeaponDetail' component={WeaponDetailScreen} options={{ headerShown: false }} initialParams={
+            {
+              uuid: "63e6c2b6-4a8e-869c-3d4c-e38355226584",
+              title: "Odin"
             }
           } />
 

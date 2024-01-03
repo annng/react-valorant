@@ -39,7 +39,15 @@ const mainStyle = StyleSheet.create({
     p: {
         fontSize: 14,
         fontWeight: '400',
+        paddingVertical: 8,
         color: theme.colors.paragraph,
+        lineHeight: 20
+    },
+    body2: {
+        fontSize: 14,
+        fontWeight: '400',
+        paddingVertical: 8,
+        color: theme.colors.onBackground,
         lineHeight: 20
     },
     caption: {
