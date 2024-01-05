@@ -19,3 +19,5 @@ class WeaponService{
         return result
       }
 }
+
+export default WeaponService

@@ -24,8 +24,7 @@ const AgentDetailScreen: React.FC<AgentDetailProps> = ({ navigation, route }: Ag
   const agentDetailState = AgentDetailState()
 
   const { uuid, title } = route.params
-  useNavigation<NativeStackNavigationProp<stackScreen>>()
-
+  
 
   const agents: ResponseData<Agents> = agentDetailState.agents
 
