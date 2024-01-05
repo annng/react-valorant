@@ -35,7 +35,6 @@ export const WeaponDetailBackgroundComponent: React.FC<WeaponDetailBackgroundPro
                     <WeaponDamageComponent damage={weapon.weaponStats.damageRanges} />
                 </View>
             </View>
-            <Text style={mainStyle.h4}>Skin</Text>
             <WeaponSkinComponent skins={weapon.skins} />
         </View>
     )
@@ -43,13 +42,12 @@ export const WeaponDetailBackgroundComponent: React.FC<WeaponDetailBackgroundPro
 
 const style = StyleSheet.create({
     header: {
-        flex: 1,
-        backgroundColor: theme.colors.primaryTransparent,
+        flex: 1,  
         borderBottomLeftRadius: 16,
         borderBottomRightRadius: 16,
     },
     headerWrapper: {
-        backgroundColor: theme.colors.overlayLight,
+        backgroundColor: theme.colors.primary,
         borderBottomLeftRadius: 16,
         borderBottomRightRadius: 16,
         height: 150,

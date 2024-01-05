@@ -1,11 +1,16 @@
-import React, { useState } from 'react'
-import { FlatList, Image, ImageBackground, StyleSheet, Text, View } from 'react-native'
-import { Skin } from '../../../../../data/response/Weapons'
+import React, { useEffect, useRef, useState } from 'react'
+import { FlatList, Image, ImageBackground, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Skin, Weapons } from '../../../../../data/response/Weapons'
 import { useNavigation } from '../../../../../core/shared/Routing'
 import { MapGame } from '../../../../../data/response/MapGame'
 import { theme } from '../../../../../assets/res/theme'
 import LinearGradient from 'react-native-linear-gradient'
 import mainStyle from '../../../../../utils/styling/mainStyle'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectSkin } from '../WeaponSkinSlice'
+import { RootState } from '../../../../../core/state/Store'
+import RBSheet from '@nonam4/react-native-bottom-sheet'
+
 
 interface WeaponSkinProps {
     skins: Skin[]
@@ -13,42 +18,78 @@ interface WeaponSkinProps {
 
 export const WeaponSkinComponent: React.FC<WeaponSkinProps> = ({ skins }) => {
 
+    const dispatch = useDispatch();
+    const selectedSkin = useSelector((state: RootState) => state.weaponSkin.value);
+
+    const refRBSheet = useRef<RBSheet | null>(null);
+
+
     const { navigate } = useNavigation()
 
     const _keyExtractor = (item: Skin, index: number) => {
         return item.uuid.toString();
     }
 
-    const _renderItem = ({ item }: { item: Skin }) => {
-        return (
-            <View style={style.wrapper}>
-                <LinearGradient
-                    colors={['rgba(179,59,69,0.8)', 'rgba(179,59,69,0.4)', 'rgba(179,59,69,0)']}
-                    start={{ x: 0, y: 0 }}
-                    end={{ x: 0, y: 1 }}
-                    style={style.overlay}>
-                    {/* <Image source={{ uri: item.displayIcon ?? "" }} style={style.badge} /> */}
-                    {item.displayIcon != null && (<ImageBackground source={{ uri: item.displayIcon }} style={style.thumbnailContainer} 
-                    imageStyle={style.thumbnail} resizeMode="contain">
-                        <View style={style.weaponInfoContainer}>
-                            <Text style={[mainStyle.h4, { marginBottom: 0 }]}>{item.displayName}</Text>
-                        </View>
-                    </ImageBackground>)}
+    const _selectSkin = (skin: Skin) => {
+        if (selectedSkin == skin) {
+            dispatch(selectSkin(null));
+        } else {
+            dispatch(selectSkin(skin));
+        }
+    }
 
-                </LinearGradient>
+    const _renderItem = ({ item }: { item: Skin }) => {
+
+        const hasStreamedVideo = item.levels.some(level => level.streamedVideo !== null);
+
+
+        return (
+
+            <View style={style.wrapper}>
+                <TouchableOpacity onPress={() => _selectSkin(item)} style={{ width: '100%', height: 150 }}>
+                    <LinearGradient
+                        colors={['#161f36', '#0d1322', 'rgba(179,59,69,0)']}
+                        start={{ x: 0, y: 0 }}
+                        end={{ x: 0, y: 1 }}
+                        style={style.overlay}>
+                        {/* <Image source={{ uri: item.displayIcon ?? "" }} style={style.badge} /> */}
+                        {item.displayIcon != null && (<ImageBackground source={{ uri: item.displayIcon }} style={style.thumbnailContainer}
+                            imageStyle={style.thumbnail} resizeMode="contain">
+                            <View style={style.weaponInfoContainer}>
+                                <Text style={[mainStyle.h4, {
+                                    alignItems: 'flex-end',
+                                    justifyContent: 'flex-end',
+                                }]} numberOfLines={1} ellipsizeMode='tail'>{item.displayName}</Text>
+                                <View style={style.wrapperSkin}>
+                                    <Text style={[mainStyle.p, {}]}>{item.chromas.length} Type Skin</Text>
+                                    {hasStreamedVideo && (
+                                        <TouchableOpacity onPress={() => {
+                                        }} style={{ flex: 1, }}>
+                                            <Text style={[mainStyle.p, { color: theme.colors.primary, fontWeight: 'bold', textAlign: 'right' }]}>See Video</Text>
+                                        </TouchableOpacity>
+                                    )}
+                                </View>
+                            </View>
+                        </ImageBackground>)}
+
+                    </LinearGradient>
+                </TouchableOpacity>
             </View >
+
         )
     }
 
     return (
-        <FlatList
-            contentContainerStyle={style.app}
-            data={skins}
-            keyExtractor={_keyExtractor}
-            renderItem={_renderItem}
-            numColumns={2}
-            scrollEnabled={false}
-        />
+        <View>
+            <FlatList
+                contentContainerStyle={style.app}
+                data={skins}
+                keyExtractor={_keyExtractor}
+                renderItem={_renderItem}
+                numColumns={2}
+                scrollEnabled={false}
+            />
+        </View>
     )
 }
 
@@ -65,21 +106,9 @@ const style = StyleSheet.create({
         paddingVertical: 4,
         borderRadius: 8,
     },
-    content: {
-        flex: 1,
-        width: '100%',
-        backgroundColor: 'rgba(0,0,0,0.4)',
-        borderRadius: 8
-    },
     overlay: {
         borderRadius: 8,
         flex: 1,
-    },
-    badge: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        width: "10%"
     },
     thumbnailContainer: {
         width: '100%',
@@ -87,13 +116,20 @@ const style = StyleSheet.create({
     },
     thumbnail: {
         width: '100%',
-        height: '100%',
+        height: '100%', 
         resizeMode: 'contain'
     },
     weaponInfoContainer: {
-        position: "absolute",
-        bottom: 8,
-        left: 0
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+    },
+    wrapperSkin: {
+        flex: 1,
+        flexDirection: 'row',
+        alignItems: 'flex-end',
+        marginBottom: 8,
+        marginHorizontal: 10,
     },
     categoryWeapon: {
         fontSize: 14,

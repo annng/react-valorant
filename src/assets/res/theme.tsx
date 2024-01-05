@@ -18,6 +18,8 @@ export const theme = {
     onPrimary: '#F4F4F4',
     title : '#A69292',
     secondary : "#afff46",
+    accent : "#0d1322",
+    accentLight : '#c6d4f7',
     primary: '#ff4656',
     primaryTransparent: "rgba(255,70,86,0.4)"
   },

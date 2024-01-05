@@ -14,25 +14,26 @@ const WeaponDamageComponent: React.FC<WeaponDamageProps> = ({ damage }) => {
     return (
         <View style={style.container}>
 
+
             <View style={style.wrapper}>
                 <Text style={[mainStyle.body2, style.textTitle]}>Distance</Text>
                 <Text style={[mainStyle.p, style.textTitle, { textAlign: 'center' }]}>{damage[0].rangeStartMeters}-{damage[0].rangeEndMeters} m</Text>
-                <Text style={[mainStyle.p, style.textTitle, { textAlign: 'right' }]}>{damage[1].rangeStartMeters}-{damage[1].rangeEndMeters} m</Text>
+                {damage.length > 1 && (<Text style={[mainStyle.p, style.textTitle, { textAlign: 'right' }]}>{damage[1].rangeStartMeters}-{damage[1].rangeEndMeters} m</Text>)}
             </View>
             <View style={style.wrapper}>
                 <Text style={[mainStyle.body2, style.textTitle]}>Head</Text>
                 <Text style={[mainStyle.p, style.textTitle, { textAlign: 'center' }]}>{damage[0].headDamage}</Text>
-                <Text style={[mainStyle.p, style.textTitle, { textAlign: 'right' }]}>{damage[1].headDamage}</Text>
+                {damage.length > 1 && (<Text style={[mainStyle.p, style.textTitle, { textAlign: 'right' }]}>{damage[1].headDamage}</Text>)}
             </View>
             <View style={style.wrapper}>
                 <Text style={[mainStyle.body2, style.textTitle]}>Body</Text>
                 <Text style={[mainStyle.p, style.textTitle, { textAlign: 'center' }]}>{damage[0].bodyDamage}</Text>
-                <Text style={[mainStyle.p, style.textTitle, { textAlign: 'right' }]}>{damage[1].bodyDamage}</Text>
+                {damage.length > 1 && (<Text style={[mainStyle.p, style.textTitle, { textAlign: 'right' }]}>{damage[1].bodyDamage}</Text>)}
             </View>
             <View style={style.wrapper}>
                 <Text style={[mainStyle.body2, style.textTitle]}>Leg</Text>
                 <Text style={[mainStyle.p, style.textTitle, { textAlign: 'center' }]}>{damage[0].legDamage}</Text>
-                <Text style={[mainStyle.p, style.textTitle, { textAlign: 'right' }]}>{damage[1].legDamage}</Text>
+                {damage.length > 1 && (<Text style={[mainStyle.p, style.textTitle, { textAlign: 'right' }]}>{damage[1].legDamage}</Text>)}
             </View>
         </View>
     )
