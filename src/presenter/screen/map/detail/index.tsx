@@ -90,7 +90,7 @@ const MapDetailScreen: React.FC<MapDetailProps> = ({ navigation, route }: MapDet
                 </View>
             </ScrollView>
             <View style={[mainStyle.containerBack, { backgroundColor: backgroundColor }]}>
-                <HeaderBackButton onPress={() => navigation.pop()} style={mainStyle.backButton} tintColor={theme.colors.onBackground} />
+                <HeaderBackButton onPress={() => navigation.pop()} style={mainStyle.backButton} tintColor={theme.colors.onBackground}/>
             </View>
 
         </SafeAreaView>

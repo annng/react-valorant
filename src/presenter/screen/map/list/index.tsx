@@ -23,7 +23,7 @@ const MapListScreen : React.FC<MapListProps> = ({navigation, route}) => {
                 <TextInput
                     style={mainStyle.searchBar}
                     placeholderTextColor={theme.colors.paragraph}
-                    placeholder="Type Maps Name..."
+                    placeholder="Type Weapons Name..."
                     onChangeText={newText => state.searchMaps(newText)}
                     defaultValue={keyword}
                 />

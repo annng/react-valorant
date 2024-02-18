@@ -54,7 +54,9 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ navigation }) => {
                         <MapListComponent maps={maps.data?.slice(0, 4)}/>
                         <View style={HomeStyle.titleContainer}>
                             <Text style={[mainStyle.h3, { flex: 1 }]}>Weapons</Text>
-                            <Text style={[mainStyle.h5, { color: theme.colors.primaryDark }]}>See More</Text>
+                            <TouchableOpacity onPress={() => { navigation.push("WeaponList")}}>
+                                <Text style={[mainStyle.h5, { color: theme.colors.primaryDark }]}>See More</Text>
+                            </TouchableOpacity>
                         </View>
                         <WeaponsGridComponent items={weapons.data?.slice(0, 4)} />
                     </View>

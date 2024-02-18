@@ -30,6 +30,7 @@ import MapListScreen from './src/presenter/screen/map/list';
 import WeaponDetailScreen from './src/presenter/screen/weapon/detail';
 import { Provider } from 'react-redux';
 import { store } from './src/core/state/Store';
+import WeaponListScreen from './src/presenter/screen/weapon/list';
 
 
 
@@ -70,6 +71,7 @@ function App(): React.JSX.Element {
               }
             } />
             <Stack.Screen name='MapList' component={MapListScreen} options={{ headerShown: true, headerTitle: "Maps" }} />
+            <Stack.Screen name='WeaponList' component={WeaponListScreen} options={{ headerShown: true, headerTitle: "Weapon" }} />
             <Stack.Screen name='MapDetail' component={MapDetailScreen} options={{ headerShown: false }} initialParams={
               {
                 uuid: "92584fbe-486a-b1b2-9faa-39b0f486b498",

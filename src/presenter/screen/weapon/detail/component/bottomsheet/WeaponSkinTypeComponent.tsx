@@ -44,7 +44,7 @@ export const WeaponSkinTypeComponent: React.FC<WeaponSkinTypeProps> = ({ skins, 
                 }} style={{ width: '100%', height: 150 }}>
                     <LinearGradient
                         // colors={['#161f36', '#0d1322', 'rgba(179,59,69,0)']}
-                        colors={[theme.colors.overlayLight, theme.colors.primaryTransparent, theme.colors.background]}
+                        colors={[theme.colors.overlayLight, theme.colors.primaryTransparent, theme.colors.surface]}
                         start={{ x: 0, y: 0 }}
                         end={{ x: 0, y: 1 }}
                         style={style.overlay}>
